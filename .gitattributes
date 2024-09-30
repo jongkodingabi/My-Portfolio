@@ -1,5 +1,7 @@
 * text=auto eol=lf
 
+*.php linguist-language=PHP
+*.html linguist-vendored
 *.blade.php diff=php
 *.css diff=css
 *.html diff=html

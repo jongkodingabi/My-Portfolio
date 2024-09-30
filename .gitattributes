@@ -2,6 +2,7 @@
 
 *.php linguist-language=PHP
 *.html linguist-vendored
+*.css linguist-vendored
 *.blade.php diff=php
 *.css diff=css
 *.html diff=html

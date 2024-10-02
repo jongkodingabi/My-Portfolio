@@ -90,13 +90,13 @@
           <h1 class="text-base font-semibold text-primary md:text-xl">
             Hello Everyone 👋, <span class="block font-bold  text-primary py-6 bg-gradient-to-r from-primary to-blue-700 bg-clip-text text-transparent
              lg:text-5xl sm:text-lg">
-              I'm Abisam Hazim</span></h1>
-          <h2 class="font-medium text-secondary text-lg mb-5 lg:text-2xl dark:text-white">Web Developer &
-            <span class="text-primary py-6 bg-gradient-to-r from-primary to-blue-700 bg-clip-text text-transparent">
-              Programming</span></h2>
+             @foreach ($heroSectionsCollection as $heroSection )
+              {{ $heroSection->title }}</h1>
+          <h2 class="font-medium text-primary py-6 bg-gradient-to-r from-primary to-blue-700 bg-clip-text text-transparent">
+            {{ $heroSection->subTitle }}
+        </h2>
           <p class="font-medium text-secondary mb-10
-          leading-relaxed">I'm a Web Developer, My expertise is to create and Websites design,
-            graphic design and <span class="text-dark font-bold  dark:text-white">many more..</span></p>
+          leading-relaxed">{{ $heroSection->description  }}<span class="text-dark font-bold  dark:text-white">many more..</span></p>
 
             <a href="#contact" class="text-base font-semibold text-white bg-primary
             py-3 px-8 rounded-full hover:shadow-lg hover:opacity-80 transition duration-300
@@ -104,13 +104,15 @@
         </div>
         <div class="w-full self-end px-4 lg:w-1/2 md:scale-125 overflow-hidden">
           <div class="relative mt-10 lg:mt-9 lg:right-0">
-            <img src="dist/img/Foto-diri-removebg.png" width="300" height="300" alt="Abisam Hazim"
+            <img src="{{ Storage::url($heroSection->picture) }}" width="300" height="300" alt="Abisam Hazim"
             class="relative z-10 max-w-full mx-auto" />
+            @endforeach
             <span class="absolute bottom-0  left-1/2 -translate-x-1/2">
               <svg width="400" height="400" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
                 <path fill="#22d3ee
                 " d="M41.6,-57.5C52,-49.7,57.2,-35,57.3,-21.7C57.4,-8.4,52.3,3.5,51,19.4C49.8,35.4,52.3,55.4,44.4,61.3C36.5,67.2,18.3,59,0.3,58.7C-17.7,58.3,-35.4,65.7,-45.2,60.4C-55,55.1,-56.9,37.1,-56.3,22.2C-55.8,7.4,-52.7,-4.4,-45.8,-11.6C-38.9,-18.8,-28.2,-21.4,-19.9,-29.9C-11.7,-38.4,-5.8,-52.6,4.9,-59.3C15.6,-66.1,31.2,-65.3,41.6,-57.5Z"
                 transform="translate(100 100) scale(1.1)" />
+
               </svg>
             </span>
           </div>

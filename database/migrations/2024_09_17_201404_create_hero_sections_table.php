@@ -14,6 +14,8 @@ return new class extends Migration
             Schema::create('hero_sections', function (Blueprint $table) {
                 $table->id();
                 $table->string('title');
+                $table->string('subTitle');
+                $table->string('description');
                 $table->string('picture');
                 $table->timestamps();
             });

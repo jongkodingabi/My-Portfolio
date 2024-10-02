@@ -32,8 +32,11 @@ Route::middleware('auth')->group(function () {
 
 
 //ROUTE Admin Hero
+Route::get('home', [HeroSectionController::class, 'home'])->name('home');
+
 Route::resource('heroSections', HeroSectionController::class)->names([
     'index' => 'admin.heroes.heroIndex',
+    'index' => 'home',
     'edit' => 'admin.heroes.heroEdit',
     'show' => 'admin.heroes.heroShow',
 ]);

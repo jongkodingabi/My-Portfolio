@@ -374,6 +374,12 @@ form button:hover {
                         <label>Title</label>
                         <input type="text" name="title" required>
 
+                        <label>Sub Title</label>
+                        <input type="text" name="subTitle" required>
+
+                        <label>Description</label>
+                        <input type="text" name="description" required>
+
                         <label>Picture</label>
                         <input type="file" name="picture" accept="image/*" required>
 

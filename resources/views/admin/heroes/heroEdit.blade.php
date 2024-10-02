@@ -374,6 +374,12 @@ form button:hover {
                             <label>Title</label>
                             <input type="text" name="title" value="{{ $heroSection->title }}" required>
 
+                            <label>Sub title</label>
+                            <input type="text" name="subTitle" value="{{ $heroSection->subTitle }}" required>
+
+                            <label>Title</label>
+                            <input type="text" name="description" value="{{ $heroSection->description }}" required>
+
                             <label>Picture</label>
                             <input type="file" name="picture" accept="image/*">
 

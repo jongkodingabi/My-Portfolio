@@ -372,6 +372,8 @@ h1 {
                                 <tr>
                                     <th>#</th>
                                     <th>Title</th>
+                                    <th>Sub Title</th>
+                                    <th>Description</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -380,6 +382,8 @@ h1 {
                                 <tr>
                                     <td>{{ $index + 1 }}</td>
                                     <td>{{ $heroSection->title }}</td>
+                                    <td>{{ $heroSection->subTitle }}</td>
+                                    <td>{{ $heroSection->description }}</td>
                                     <td>
                                         <a href="{{ route('admin.heroes.heroShow', $heroSection->id) }}" class="btn btn-info btn-sm">View</a>
                                         <a href="{{ route('admin.heroes.heroEdit', $heroSection->id) }}" class="btn btn-warning btn-sm">Edit</a>

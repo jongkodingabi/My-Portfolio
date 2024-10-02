@@ -338,6 +338,8 @@
                                     <h2 class="mb-0">{{ $heroSection->title }}</h2>
                                 </div>
                                 <div class="card-body">
+                                    <p><strong>Sub Title:</strong> {{ $heroSection->subTitle }}</p>
+                                    <p><strong>Description:</strong> {{ $heroSection->description }}</p>
                                     @if ($heroSection->picture)
                                         <p><strong>File:</strong>
                                             <a href="{{ Storage::url($heroSection->picture) }}" class="btn btn-outline-primary btn-sm">

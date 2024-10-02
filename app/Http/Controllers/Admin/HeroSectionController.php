@@ -19,6 +19,12 @@ class HeroSectionController extends Controller
         return view('admin.heroes.heroIndex', compact('heroSections'));
     }
 
+        public function home()
+        {
+            $heroSectionsCollection = HeroSection::all();
+            return view('/home', compact('heroSectionsCollection'));
+        }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -34,6 +40,8 @@ class HeroSectionController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
+            'title' => 'required|string|max:255',
+            'description' => 'required|string|max:255',
             'picture' => 'required|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
@@ -42,6 +50,8 @@ class HeroSectionController extends Controller
 
         HeroSection::create([
             'title' => $request->input('title'),
+            'subTitle' => $request->input('subTitle'),
+            'description' => $request->input('description'),
             'picture' => $path,
         ]);
 
@@ -75,6 +85,8 @@ class HeroSectionController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
+            'subTitle' => 'required|string|max:255',
+            'description' => 'required|string|max:255',
             'picture' => 'sometimes|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 

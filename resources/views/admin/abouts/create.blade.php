@@ -382,23 +382,11 @@ form button:hover {
 
     <form action="{{ route('abouts.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
-        <label>Name:</label>
-         <input type="text" name="name" value="{{ old('name') }}"><br>
+        <label>Title:</label>
+         <input type="text" name="title" value="{{ old('title') }}"><br>
 
-         <label>Date Of Birth:</label>
-         <input type="date" name="date_of_birth" value="{{ old('date_of_birth') }}"><br>
-
-        <label>Address:</label>
-        <input type="text" name="addres" value="{{ old('addres') }}"><br>
-
-        <label>Email:</label>
-        <input type="email" name="email" value="{{ old('email') }}"><br>
-
-        <label>Phone Number:</label>
-        <input type="text" name="phone_number" value="{{ old('phone_number') }}"><br>
-
-        <label>File:</label>
-        <input type="file" name="images"><br><br>
+         <label>Sub Title:</label>
+         <input type="text" name="subtitle" value="{{ old('subtitle') }}"><br>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 

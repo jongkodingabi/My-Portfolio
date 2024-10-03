@@ -14,11 +14,7 @@ class About extends Model
 
     // Kolom yang dapat diisi secara massal
     protected $fillable = [
-        'images',
-        'name',
-        'date_of_birth',
-        'addres',
-        'email',
-        'phone_number',
+        'title',
+        'subtitle',
     ];
 }

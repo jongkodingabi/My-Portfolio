@@ -156,9 +156,25 @@
                     <span class="sub-item">Add skills</span>
                   </a>
                 </li>
-              </ul>
+            </ul>
+        </div>
+    </li>
+
+    <li class="nav-item">
+        <a data-bs-toggle="collapse" href="#charts">
+          <i class="far fa-chart-bar"></i>
+              <form method="POST" action="{{ route('logout') }}">
+                @csrf
+            <li>
+                <a href="route('logout')"
+                 onclick="event.preventDefault();
+                                    this.closest('form').submit()"
+                class="text-base text-dark py-2 mx-8 flex group-hover:text-primary dark:text-white">
+                    Logout</a>
+            </form>
+            </li>
             </div>
-          </li>
+        </li>
           {{-- <li class="nav-item">
             <a href="widgets.html">
               <i class="fas fa-desktop"></i>

@@ -90,13 +90,15 @@
           <h1 class="text-base font-semibold text-primary md:text-xl">
             Hello Everyone 👋, <span class="block font-bold  text-primary py-6 bg-gradient-to-r from-primary to-blue-700 bg-clip-text text-transparent
              lg:text-5xl sm:text-lg">
+
              @foreach ($heroSectionsCollection as $heroSection )
+
               {{ $heroSection->title }}</h1>
-          <h2 class="font-medium text-primary py-6 bg-gradient-to-r from-primary to-blue-700 bg-clip-text text-transparent">
+          <h2 class="text-2xl font-medium text-primary py-4 bg-gradient-to-r from-primary to-blue-700 bg-clip-text text-transparent">
             {{ $heroSection->subTitle }}
         </h2>
           <p class="font-medium text-secondary mb-10
-          leading-relaxed">{{ $heroSection->description  }}<span class="text-dark font-bold  dark:text-white">many more..</span></p>
+          leading-relaxed">{{ $heroSection->description  }}<span class="text-dark font-bold  dark:text-white"> many more..</span></p>
 
             <a href="#contact" class="text-base font-semibold text-white bg-primary
             py-3 px-8 rounded-full hover:shadow-lg hover:opacity-80 transition duration-300

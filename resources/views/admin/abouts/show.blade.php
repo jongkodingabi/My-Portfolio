@@ -335,21 +335,10 @@
                             <section class="show-section">
                             <div class="card shadow-sm">
                                 <div class="card-header bg-primary text-white">
-                                    <h2 class="mb-0">{{ $about->name }}</h2>
+                                    <h2 class="mb-0">{{ $about->title }}</h2>
                                 </div>
                                 <div class="card-body">
-                                    <p><strong>Date Of Birth:</strong> {{ $about->date_of_birth }}</p>
-                                    <p><strong>Addres:</strong> {{ $about->addres }}</p>
-                                    <p><strong>Email:</strong> {{ $about->email }}</p>
-                                    <p><strong>Phone Number:</strong> {{ $about->phone_number }}</p>
-
-                                    @if ($about->images)
-                                        <p><strong>File:</strong>
-                                            <a href="{{ Storage::url($about->images) }}" class="btn btn-outline-primary btn-sm">
-                                                See Images
-                                            </a>
-                                        </p>
-                                    @endif
+                                    <p><strong>Sub Title:</strong> {{ $about->subtitle }}</p>
                                 </div>
                                 <div class="card-footer">
                                     <a href="{{ route('admin.abouts.index') }}" class="btn btn-secondary">

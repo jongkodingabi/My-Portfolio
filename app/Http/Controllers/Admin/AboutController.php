@@ -33,24 +33,15 @@ class AboutController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'images' => 'required|image|mimes:jpg,jpeg,png|max:2048',
-            'name' => 'required',
-            'date_of_birth' => 'required',
-            'addres' => 'required',
-            'email' => 'email',
-            'phone_number' => 'required',
+            'title' => 'required',
+            'subtitle' => 'required',
         ]);
 
         //save picture
-        $path = $request->file('images')->store('public/images');
 
         About::create([
-        'images' => $path,
-        'name' => $request->input('name'),
-        'date_of_birth' => $request->input('date_of_birth'),
-        'addres' => $request->input('addres'),
-        'email' => $request->input('email'),
-        'phone_number' => $request->input('phone_number'),
+        'title' => $request->input('title'),
+        'subtitle' => $request->input('subtitle'),
     ]);
 
         return redirect()->route('admin.abouts.index')->with('success', 'Succsesfully added About');
@@ -78,31 +69,17 @@ class AboutController extends Controller
     public function update(Request $request, About $about)
     {
         $request->validate([
-            'images' => 'required|image|mimes:jpg,jpeg,png|max:2048',
-            'name' => 'required',
-            'date_of_birth' => 'required',
-            'addres' => 'required',
-            'email' => 'email',
-            'phone_number' => 'required',
+            'title' => 'required',
+            'subtitle' => 'required',
         ]);
 
-        $path = $request->file('images')->store('public/images');
+
 
         $data = ([
-            'images' => $path,
-            'name' => $request->input('name'),
-            'date_of_birth' => $request->input('date_of_birth'),
-            'addres' => $request->input('addres'),
-            'email' => $request->input('email'),
-            'phone_number' => $request->input('phone_number'),
+            'title' => $request->input('title'),
+            'subtitle' => $request->input('subtitle'),
         ]);
 
-        if ($request->hasFile('images')){
-            if ($about->images){
-                Storage::delete('images');
-            }
-            $data['images'] = $request->file('images')->store('public/images');
-        }
         $about->update($data);
 
         return redirect()->route('admin.abouts.index')->with('succsess, succsesfully updating About');

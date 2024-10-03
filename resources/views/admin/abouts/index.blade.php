@@ -371,11 +371,8 @@ h1 {
                             <thead class="thead-dark">
                                 <tr>
                                     <th>#</th>
-                                    <th>Name</th>
-                                    <th>DOB</th>
-                                    <th>Addres</th>
-                                    <th>Email</th>
-                                    <th>Phone Number</th>
+                                    <th>Title</th>
+                                    <th>Sub Title</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -383,11 +380,8 @@ h1 {
                                 @foreach($abouts as $index => $about)
                                 <tr>
                                     <td>{{ $index + 1 }}</td>
-                                    <td>{{ $about->name }}</td>
-                                    <td>{{ $about->date_of_birth }}</td>
-                                    <td>{{ $about->addres }}</td>
-                                    <td>{{ $about->email }}</td>
-                                    <td>{{ $about->phone_number }}</td>
+                                    <td>{{ $about->title }}</td>
+                                    <td>{{ $about->subtitle }}</td>
                                     <td>
                                         <a href="{{ route('admin.abouts.show', $about->id) }}" class="btn btn-info btn-sm">View</a>
                                         <a href="{{ route('admin.abouts.edit', $about->id) }}" class="btn btn-warning btn-sm">Edit</a>

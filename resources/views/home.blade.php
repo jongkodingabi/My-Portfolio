@@ -128,26 +128,16 @@
   <!-- About Section Start -->
   <section id="about" class="pt-36 pb-32 dark:bg-dark">
     <div class="container">
-      <div class="flex flex-wrap">
-        <div class="w-full px-4 mb-10 lg:w-1/2">
-          <h4 class="font-bold uppercase text-primary text-lg mb-5 max-w-xl">About Me</h4>
-          <h2 class="font-bold text-dark text-3xl mb-5 max-w-md lg:text-4xl  dark:text-white">Know more about me!</h2>
-          <p class="font-medium text-base text-secondary max-w-xl lg:text-lg">
-            Hi, I'm Abisam Hazim, a passionate web developer with a focus on creating dynamic
-             and user-friendly websites. Which interest in front-end and back-end development,
-             I specialize in working with modern frameworks like Laravel, bootstrap, tailwind.
-             My goal is to build seamless digital
-            experiences that not only meet client expectations but also enhance user engagement.</p>
-        </div>
-
-        <div class="w-full px-4 lg:w-1/2">
-          <h3 class="font-semibold text-dark text-2xl mb-4 lg:text-3xl lg:pt-10  dark:text-white">Let's be friends</h3>
-          <p class="font-medium text-base text-secondary mb-6 lg:text-lg">When I'm not writing code,
-            I enjoy gaming, photograph, designing, reading novels
-             which help me stay creative and inspired. I'm always looking to connect with like-minded
-             people who share the same
-            passion for innovation and technology. Feel free to reach out to me on social media—I’d
-            love to chat and collaborate on exciting projects or just talk tech. Find me on</p>
+        <div class="flex flex-wrap">
+            @foreach ($abouts as $about)
+                <div class="w-full md:w-1/2 px-4 mb-10"> <!-- Ganti lg:w-1/2 dengan md:w-1/2 -->
+                    <h4 class="font-bold uppercase text-primary text-lg mb-5 max-w-xl">About Me</h4>
+                    <h2 class="font-bold text-dark text-3xl mb-5 max-w-md lg:text-4xl dark:text-white">{{ $about->title }}</h2>
+                    <p class="font-medium text-base text-secondary max-w-xl lg:text-lg">
+                        {{ $about->subtitle }}
+                    </p>
+                </div>
+            @endforeach
             <div class="flex items-center">
 
               <!-- youtube -->

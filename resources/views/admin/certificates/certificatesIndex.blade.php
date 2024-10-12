@@ -18,6 +18,10 @@
 		});
 	</script>
 
+    {{-- Java Script --}}
+    <link href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" rel="stylesheet">
+
+
 	<!-- CSS Files -->
 	<link rel="stylesheet" href="{{ asset('asset-admin/assets/css/bootstrap.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('asset-admin/assets/css/plugins.min.css')}}">
@@ -349,56 +353,59 @@ h1 {
 
 
 
-        <center>
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-8">
-                        <section class="certificate-section">
-                            <div class="d-flex flex-column">
-                            <h1>Certificates</h1>
-                            <a href="{{ route('certificates.create') }}" class="btn btn-primary">
-                                Add Certificate</a>
-                            </div>
+            <center>
+                <div class="container">
+                    <section class="certificate-section">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8">
+                                <div class="d-flex flex-column">
+                                    <h1>Certificates</h1>
+                                    <a href="{{ route('certificates.create') }}" class="btn btn-primary">
+                                        Add Certificate</a>
+                                </div>
                         </div>
+                            @if(session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
+                            </section>
 
-                        @if(session('success'))
-                            <div class="alert alert-success">
-                                {{ session('success') }}
-                            </div>
-                        @endif
-
-                        <table class="table table-hover table-striped">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th>#</th>
-                                    <th>Title</th>
-                                    <th>Issued By</th>
-                                    <th>Issue Date</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($certificates as $index => $certificate)
-                                <tr>
-                                    <td>{{ $index + 1 }}</td>
-                                    <td>{{ $certificate->title }}</td>
-                                    <td>{{ $certificate->issued }}</td>
-                                    <td>{{ $certificate->date }}</td>
-                                    <td>
-                                        <a href="{{ route('admin.certificates.certificatesShow', $certificate->id) }}" class="btn btn-info btn-sm">View</a>
-                                        <a href="{{ route('admin.certificates.certificatesEdit', $certificate->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                        <form action="{{ route('certificates.destroy', $certificate->id) }}" method="POST" class="d-inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                            <div class="mt-5">
+                            <table id="certificates-table" class="table table-hover table-striped">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Title</th>
+                                        <th>Issued By</th>
+                                        <th>Issue Date</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($certificates as $index => $certificate)
+                                    <tr>
+                                        <td>{{ $index + 1 }}</td>
+                                        <td>{{ $certificate->title }}</td>
+                                        <td>{{ $certificate->issued }}</td>
+                                        <td>{{ $certificate->date }}</td>
+                                        <td>
+                                            <a href="{{ route('admin.certificates.certificatesShow', $certificate->id) }}" class="btn btn-info btn-sm">View</a>
+                                            <a href="{{ route('admin.certificates.certificatesEdit', $certificate->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                            <form action="{{ route('certificates.destroy', $certificate->id) }}" method="POST" class="d-inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
+            </center>
             </div>
         </section>
 
@@ -531,6 +538,21 @@ h1 {
 	<script src="{{ asset('asset-admin/assets/js/kaiadmin.min.js')}}"></script>
 
 	<!-- Kaiadmin DEMO methods, don't include it in your project! -->
-	<script src="{{ asset('asset-admin/assets/js/setting-demo2.js"></script>
+	<script src="{{ asset('asset-admin/assets/js/setting-demo2.js')}}"></script>
+
+    {{-- JQuery And DataTables JS --}}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#certificates-table').DataTable({
+                paging: true,    // Enables pagination
+                searching: true, // Enables search bar
+                ordering: true,  // Enables column sorting
+            });
+        });
+        </script>
+
 </body>
 </html>

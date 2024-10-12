@@ -15,14 +15,14 @@ class HeroSectionController extends Controller
      */
     public function index()
     {
-        $heroSections = HeroSection::all();
-        return view('admin.heroes.heroIndex', compact('heroSections'));
+        $heroSectionsCollection = HeroSection::all();
+        return view('admin.heroes.heroIndex', compact('heroSectionsCollection'));
     }
 
         public function home()
         {
-            $heroSectionsCollection = HeroSection::all();
-            return view('/home', compact('heroSectionsCollection'));
+            $heroSectionsCollection = HeroSection::all(); // Pastikan variabel ini ada
+            return view('/home', compact('heroSectionsCollection')); // Pastikan compact menggunakan variabel ini
         }
 
     /**

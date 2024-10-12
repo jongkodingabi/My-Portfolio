@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Yajra\DataTables\DataTables;
 use App\Models\Certificate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -17,6 +18,12 @@ class CertificateController extends Controller
     {
         $certificates = Certificate::all();
         return view('admin.certificates.certificatesIndex', compact('certificates'));
+    }
+
+    public function getCertificates(DataTables $dataTables)
+    {
+        $certificates = Certificate::select(['id', 'title', 'issued', 'date', 'file']);
+        return $dataTables->of($certificates)->make(true);
     }
 
     /**

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\SkillsController;
 use App\Http\Controllers\AdminController;
@@ -9,7 +10,6 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\UserController;
-use App\Models\Certificate;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -31,10 +31,10 @@ Route::middleware('auth')->group(function () {
 
 
 
-//ROUTE Admin Hero
-Route::get('home', [HeroSectionController::class, 'home'])->name('home');
+//ROUTE HERO HOME
 
-Route::resource('heroSections', HeroSectionController::class)->names([
+//ROUTE Admin Hero
+Route::resource('heroSectionsCollections', HeroSectionController::class)->names([
     'index' => 'admin.heroes.heroIndex',
     'edit' => 'admin.heroes.heroEdit',
     'show' => 'admin.heroes.heroShow',
@@ -61,18 +61,25 @@ Route::resource('contacts', ContactController::class)->names([
     'edit' => 'admin.contact.edit'
 ]);
 
+
 //Route Admin About
+
+//ROUTE HOME ABOUT
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
 Route::resource('abouts', AboutController::class)->names([
     'index' => 'admin.abouts.index',
     'show' => 'admin.abouts.show',
     'edit' => 'admin.abouts.edit'
 ]);
 
+
 //Route Admin Certificate
 Route::resource('certificates', CertificateController::class)->names([
     'index' => 'admin.certificates.certificatesIndex',
     'show' => 'admin.certificates.certificatesShow',
-    'edit' => 'admin.certificates.certificatesEdit'
+    'edit' => 'admin.certificates.certificatesEdit',
+    'getCertificates' => 'certificates.getCertificates'
 ]);
 
 require __DIR__.'/auth.php';

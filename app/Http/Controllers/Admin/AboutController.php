@@ -19,6 +19,12 @@ class AboutController extends Controller
         return view('admin.abouts.index', compact('abouts'));
     }
 
+    public function home()
+    {
+        $abouts = About::all();
+        return view('/home', compact('abouts'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */

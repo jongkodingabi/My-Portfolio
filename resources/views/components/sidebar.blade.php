@@ -4,7 +4,7 @@
       <!-- Logo Header -->
       <div class="logo-header" data-background-color="dark">
         <a href="index.html" class="logo">
-         <h3 class="mt-3 text-ellipsis text-white">Portofolio Abisam Hazim</h3>
+          <h3 class="mt-3 text-ellipsis text-white">Portofolio Abisam Hazim</h3>
         </a>
         <div class="nav-toggle">
           <button class="btn btn-toggle toggle-sidebar">
@@ -24,12 +24,7 @@
       <div class="sidebar-content">
         <ul class="nav nav-secondary">
           <li class="nav-item active">
-            <a
-              data-bs-toggle="collapse"
-              href="#dashboard"
-              class="collapsed"
-              aria-expanded="false"
-            >
+            <a data-bs-toggle="collapse" href="#dashboard" class="collapsed" aria-expanded="false">
               <i class="fas fa-home"></i>
               <p>Dashboard</p>
               <span class="caret"></span>
@@ -85,12 +80,12 @@
           </li>
 
           <li class="nav-item">
-            <a data-bs-toggle="collapse" href="#sidebarLayouts">
+            <a data-bs-toggle="collapse" href="#sidebarLayouts2">
               <i class="fas fa-th-list"></i>
               <p>Certificate Sections</p>
               <span class="caret"></span>
             </a>
-            <div class="collapse" id="sidebarLayouts">
+            <div class="collapse" id="sidebarLayouts2">
               <ul class="nav nav-collapse">
                 <li>
                   <a href="{{ route('admin.certificates.certificatesIndex') }}">
@@ -117,6 +112,7 @@
               </ul>
             </div>
           </li>
+
           <li class="nav-item">
             <a data-bs-toggle="collapse" href="#tables">
               <i class="fas fa-table"></i>
@@ -138,6 +134,7 @@
               </ul>
             </div>
           </li>
+
           <li class="nav-item">
             <a data-bs-toggle="collapse" href="#charts">
               <i class="far fa-chart-bar"></i>
@@ -156,89 +153,27 @@
                     <span class="sub-item">Add skills</span>
                   </a>
                 </li>
-            </ul>
-        </div>
-    </li>
-
-    <li class="nav-item">
-        <a data-bs-toggle="collapse" href="#charts">
-          <i class="far fa-chart-bar"></i>
-              <form method="POST" action="{{ route('logout') }}">
-                @csrf
-            <li>
-                <a href="route('logout')"
-                 onclick="event.preventDefault();
-                                    this.closest('form').submit()"
-                class="text-base text-dark py-2 mx-8 flex group-hover:text-primary dark:text-white">
-                    Logout</a>
-            </form>
-            </li>
+              </ul>
             </div>
-        </li>
-          {{-- <li class="nav-item">
-            <a href="widgets.html">
-              <i class="fas fa-desktop"></i>
-              <p>Widgets</p>
-              <span class="badge badge-success">4</span>
-            </a>
           </li>
+
           <li class="nav-item">
-            <a href="../../documentation/index.html">
-              <i class="fas fa-file"></i>
-              <p>Documentation</p>
-              <span class="badge badge-secondary">1</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a data-bs-toggle="collapse" href="#submenu">
-              <i class="fas fa-bars"></i>
-              <p>Menu Levels</p>
+            <a data-bs-toggle="collapse" href="#logout">
+              <i class="far fa-chart-bar"></i>
               <span class="caret"></span>
             </a>
-            <div class="collapse" id="submenu">
+            <div class="collapse" id="logout">
               <ul class="nav nav-collapse">
                 <li>
-                  <a data-bs-toggle="collapse" href="#subnav1">
-                    <span class="sub-item">Level 1</span>
-                    <span class="caret"></span>
-                  </a>
-                  <div class="collapse" id="subnav1">
-                    <ul class="nav nav-collapse subnav">
-                      <li>
-                        <a href="#">
-                          <span class="sub-item">Level 2</span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <span class="sub-item">Level 2</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-                <li>
-                  <a data-bs-toggle="collapse" href="#subnav2">
-                    <span class="sub-item">Level 1</span>
-                    <span class="caret"></span>
-                  </a>
-                  <div class="collapse" id="subnav2">
-                    <ul class="nav nav-collapse subnav">
-                      <li>
-                        <a href="#">
-                          <span class="sub-item">Level 2</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-                <li>
-                  <a href="#">
-                    <span class="sub-item">Level 1</span>
-                  </a>
+                  <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <a href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit()" class="text-base text-dark py-2 mx-8 flex group-hover:text-primary dark:text-white">
+                      Logout
+                    </a>
+                  </form>
                 </li>
               </ul>
-            </div> --}}
+            </div>
           </li>
         </ul>
       </div>

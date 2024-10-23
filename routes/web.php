@@ -45,6 +45,7 @@ Route::resource('projects', ProjectController::class)->names([
     'index' => 'admin.projects.projectIndex',
     'show' => 'admin.projects.projectShow',
     'edit' => 'admin.projects.projectEdit',
+    'getProjects' => 'projects.getProjects'
 ]);
 
 //Route Admin Skill
@@ -70,7 +71,7 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::resource('abouts', AboutController::class)->names([
     'index' => 'admin.abouts.index',
     'show' => 'admin.abouts.show',
-    'edit' => 'admin.abouts.edit'
+    'edit' => 'admin.abouts.edit',
 ]);
 
 
@@ -81,5 +82,6 @@ Route::resource('certificates', CertificateController::class)->names([
     'edit' => 'admin.certificates.certificatesEdit',
     'getCertificates' => 'certificates.getCertificates'
 ]);
+
 
 require __DIR__.'/auth.php';

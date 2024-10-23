@@ -7,7 +7,7 @@
 	<link rel="icon" href="{{ asset('asset-admin/assets/img/kaiadmin/favicon.ico')}}" type="image/x-icon"/>
 
 	<!-- Fonts and icons -->
-<script src="{{ asset('asset-admin/assets/js/plugin/webfont/webfont.min.js') }}"></script>
+    <script src="{{ asset('asset-admin/assets/js/plugin/webfont/webfont.min.js') }}"></script>
 	<script>
 		WebFont.load({
 			google: {"families":["Public Sans:300,400,500,600,700"]},
@@ -18,10 +18,17 @@
 		});
 	</script>
 
+    {{-- Data Tables --}}
+    <link rel="stylesheet" href="//cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css">
+
 	<!-- CSS Files -->
 	<link rel="stylesheet" href="{{ asset('asset-admin/assets/css/bootstrap.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('asset-admin/assets/css/plugins.min.css')}}">
 	<link rel="stylesheet" href="{{ asset('asset-admin/assets/css/kaiadmin.min.css')}}">
+
+    {{-- Table Styling --}}
+    <link href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" rel="stylesheet">
+
 
 	<!-- CSS Just for demo purpose, don't include it in your project -->
 	<link rel="stylesheet" href="{{ asset('asset-admin/assets/css/demo.css')}}">
@@ -348,57 +355,132 @@ h1 {
 			</div>
 
 
-
-        <center>
-            <div class="container">
+            {{-- <center>
+            <div class="container py-5">
                 <div class="row justify-content-center">
                     <div class="col-md-8">
                         <section class="certificate-section">
-                            <div class="d-flex flex-column">
-                            <h1>Project's</h1>
-                            <a href="{{ route('projects.create') }}" class="btn btn-primary">
-                                Add Projects</a>
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h1 class="text-center">Project's</h1>
                             </div>
+                                <a href="{{ route('projects.create') }}" class="btn btn-primary">
+                                    Add Projects
+                                </a>
                         </div>
 
-                        @if(session('success'))
-                            <div class="alert alert-success">
-                                {{ session('success') }}
-                            </div>
-                        @endif
+                            @if(session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
 
-                        <table class="table table-hover table-striped">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th>#</th>
-                                    <th>Project Name</th>
-                                    <th>Description</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($projects as $index => $project)
-                                <tr>
-                                    <td>{{ $index + 1 }}</td>
-                                    <td>{{ $project->title }}</td>
-                                    <td>{{ $project->description }}</td>
-                                    <td>
-                                        <a href="{{ route('admin.projects.projectShow', $project->id) }}" class="btn btn-info btn-sm">View</a>
-                                        <a href="{{ route('admin.projects.projectEdit', $project->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                        <form action="{{ route('projects.destroy', $project->id) }}" method="POST" class="d-inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                            <table id="projects-table" class="table table-hover table-striped">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Project Name</th>
+                                        <th>Description</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($projects as $index => $project)
+                                    <tr>
+                                        <td>{{ $index + 1 }}</td>
+                                        <td>{{ $project->title }}</td>
+                                        <td>{{ $project->description }}</td>
+                                        <td>
+                                            <a href="{{ route('admin.projects.projectShow', $project->id) }}" class="btn btn-info btn-sm">View</a>
+                                            <a href="{{ route('admin.projects.projectEdit', $project->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                            <form action="{{ route('projects.destroy', $project->id) }}" method="POST" class="d-inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </section>
                     </div>
                 </div>
+            </div> --}}
+
+             <!-- Tombol untuk Create Project -->
+             <div class="container">
+                <div class="text-center mb-4">
+                    <!-- Menambahkan judul Add Skills -->
+                    <h3 class="mb-3">Add Project's</h3>
+                    <a href="{{ route('projects.create') }}" class="btn btn-success">Create Project</a>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover table-striped" id="myTable">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Title</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($projects as $index => $project)
+                            <tr>
+                                <td>{{ $index + 1 }}</td>
+                                <td>{{ $project->title }}</td>
+                                <td>{{ $project->description }}</td>
+                                <td>
+                                    <a href="{{ route('admin.projects.projectShow', $project->id) }}" class="btn btn-info btn-sm">View</a>
+                                    <a href="{{ route('admin.projects.projectEdit', $project->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                    <form id="delete-form-{{ $project->id }}" action="{{ route('projects.destroy', $project->id) }}" method="POST" class="d-inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete({{ $project->id }})">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+
+                    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+                    {{-- Sucsess Alert --}}
+                <script>
+                    @if (session('success'))
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Your work has been saved",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    @endif
+                    </script>
+
+                    {{-- Confirm Alert --}}
+                    <script>
+                        function confirmDelete(projectId) {
+                    Swal.fire({
+                        title: "Do you want to delete this project?",
+                        showDenyButton: true,
+                        showCancelButton: true,
+                        confirmButtonText: "Delete",
+                        denyButtonText: `Don't delete`,
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Jika user mengonfirmasi penghapusan, submit form secara manual
+                            document.getElementById("delete-form-" + projectId).submit();
+                        } else if (result.isDenied) {
+                            Swal.fire("Project is not deleted", "", "info");
+                        }
+                    });
+                }
+                    </script>
+
+                </div>
             </div>
-        </section>
 
 
 			<footer class="footer">
@@ -529,6 +611,16 @@ h1 {
 	<script src="{{ asset('asset-admin/assets/js/kaiadmin.min.js')}}"></script>
 
 	<!-- Kaiadmin DEMO methods, don't include it in your project! -->
-	<script src="{{ asset('asset-admin/assets/js/setting-demo2.js"></script>
+	<script src="{{ asset('asset-admin/assets/js/setting-demo2.js') }}"></script>
+
+    <!-- Tambahkan CDN DataTables di sini -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="//cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
+    <script>let table = new DataTable('#myTable');</script>
+
+
 </body>
 </html>

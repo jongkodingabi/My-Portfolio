@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-
+use Yajra\DataTables\Contracts\DataTable;
 
 class ProjectController extends Controller
 {
@@ -46,7 +46,7 @@ class ProjectController extends Controller
             'title' => $request->input('title'),
             'description' => $request->input('description')
         ]);
-        return redirect()->route('admin.projects.projectIndex')->with('succses', 'Succsess added project.');
+        return redirect()->route('admin.projects.projectIndex')->with('success', 'Succsess added project.');
     }
 
     /**
@@ -93,7 +93,7 @@ class ProjectController extends Controller
        }
        $project->update($data);
 
-        return redirect()->route('admin.projects.projectIndex')->with('succsess', 'succsesfully added project');
+        return redirect()->route('admin.projects.projectIndex')->with('success', 'succsesfully added project');
     }
 
     /**
@@ -103,6 +103,6 @@ class ProjectController extends Controller
     {
         $project->delete();
 
-        return redirect()->route('admin.projects.projectIndex');
+        return redirect()->route('admin.projects.projectIndex')->with('success', 'success to delete project');
     }
 }

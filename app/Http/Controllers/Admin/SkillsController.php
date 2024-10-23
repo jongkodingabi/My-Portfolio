@@ -46,7 +46,7 @@ class SkillsController extends Controller
             'description' => $request->input('description'),
         ]);
 
-        return redirect()->route('admin.skills.skillsIndex')->with('Sucsess', 'sucsesfully added skills');
+        return redirect()->route('admin.skills.skillsIndex')->with('success', 'sucsesfully added skills');
     }
 
     /**
@@ -91,7 +91,7 @@ class SkillsController extends Controller
             }
             $data['images'] = $request->file('images')->store('public/images');
         }
-        return redirect()->route('admin.skills.skillsIndex')->with('Succsess updating skill');
+        return redirect()->route('admin.skills.skillsIndex')->with('success', 'updating skill');
     }
 
     /**
@@ -100,6 +100,6 @@ class SkillsController extends Controller
     public function destroy(Skill $skill)
     {
         $skill->delete();
-        return redirect()->route('admin.skills.skillsIndex')->with('sucsess', 'Skill deleted succsesfully.');
+        return redirect()->route('admin.skills.skillsIndex')->with('success', 'Skill deleted succsesfully.');
     }
 }

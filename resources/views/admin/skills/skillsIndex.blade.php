@@ -403,7 +403,7 @@ thead.thead-dark th {
                                                     @method('DELETE')
                                                     <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete({{ $skill->id }})">Delete</button>
                                                 </form>
-                                            </td>
+                                            </td> 
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -417,9 +417,8 @@ thead.thead-dark th {
                                 Swal.fire({
                                     position: "center",
                                     icon: "success",
-                                    title: "Your work has been saved",
-                                    showConfirmButton: false,
-                                    timer: 1500
+                                    title: "{{ session('success') }}",
+                                    text: "successfully save your work",
                                 });
                                 @endif
                                 </script>
@@ -430,8 +429,8 @@ thead.thead-dark th {
                                 Swal.fire({
                                     title: "Do you want to delete this skill?",
                                     showDenyButton: true,
-                                    showCancelButton: true,
                                     confirmButtonText: "Delete",
+                                    icon: 'warning',
                                     denyButtonText: `Don't delete`,
                                 }).then((result) => {
                                     if (result.isConfirmed) {
@@ -572,7 +571,6 @@ thead.thead-dark th {
 	<script src="{{ asset('asset-admin/assets/js/plugin/jsvectormap/world.js')}}"></script>
 
 	<!-- Sweet Alert -->
-    <script src="{{ asset('asset-admin/assets/js/alert.js') }}"></script>
 	<script src="{{ asset('asset-admin/assets/js/plugin/sweetalert/sweetalert.min.js')}}"></script>
 
 	<!-- Kaiadmin JS -->

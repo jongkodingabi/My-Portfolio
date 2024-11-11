@@ -30,7 +30,7 @@
     display: flex;
     justify-content: center; /* Pusatkan horizontal */
     align-items: center; /* Pusatkan vertikal */
-    min-height: 80vh; /* Tinggi minimum viewport untuk menjaga form di tengah halaman */
+    min-height: 100vh; /* Tinggi minimum viewport untuk menjaga form di tengah halaman */
     padding: 20px;
     padding-top: 100px;
 }
@@ -367,32 +367,25 @@ form button:hover {
 
             <section class="edit-about-section">
                 <div class="form-container">
+                        <h1>Add Skills</h1>
 
-    <h1>Add Skills</h1>
 
-    @if($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+            <form action="{{ route('skills.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <label>Title:</label>
+                <input type="text" name="title" value="{{ old('title') }}"><br>
 
-    <form action="{{ route('skills.store') }}" method="POST" enctype="multipart/form-data">
-        @csrf
-        <label>Title:</label>
-        <input type="text" name="title" value="{{ old('title') }}"><br>
+                <label>Description:</label>
+                <input type="text" name="description" value="{{ old('description') }}"><br>
 
-        <label>Description:</label>
-        <input type="text" name="description" value="{{ old('description') }}"><br>
+                <label>File:</label>
+                <input type="file" name="images"><br><br>
 
-        <label>File:</label>
-        <input type="file" name="images"><br><br>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            </section>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+
 
 			<footer class="footer">
 				<div class="container-fluid d-flex justify-content-between">
@@ -522,6 +515,6 @@ form button:hover {
 	<script src="{{ asset('asset-admin/assets/js/kaiadmin.min.js')}}"></script>
 
 	<!-- Kaiadmin DEMO methods, don't include it in your project! -->
-	<script src="{{ asset('asset-admin/assets/js/setting-demo2.js"></script>
+	<script src="{{ asset('asset-admin/assets/js/setting-demo2.js')}}"></script>
 </body>
 </html>

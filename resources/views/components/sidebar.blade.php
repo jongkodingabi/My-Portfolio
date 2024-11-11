@@ -160,6 +160,7 @@
           <li class="nav-item">
             <a data-bs-toggle="collapse" href="#logout">
               <i class="far fa-chart-bar"></i>
+              <p>Logout</p>
               <span class="caret"></span>
             </a>
             <div class="collapse" id="logout">

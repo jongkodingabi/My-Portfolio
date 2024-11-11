@@ -30,7 +30,7 @@
     display: flex;
     justify-content: center; /* Pusatkan horizontal */
     align-items: center; /* Pusatkan vertikal */
-    min-height: 80vh; /* Tinggi minimum viewport untuk menjaga form di tengah halaman */
+    min-height: 100vh; /* Tinggi minimum viewport untuk menjaga form di tengah halaman */
     padding: 20px;
 }
 
@@ -368,7 +368,7 @@ form button:hover {
                 <div class="form-container">
                     <h2>Tambah Hero Section</h2>
 
-                    <form action="{{ route('heroSections.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('heroSectionsCollections.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <label>Title</label>
@@ -387,7 +387,6 @@ form button:hover {
                     </form>
                 </div>
             </section>
-
 
 
 			<footer class="footer">

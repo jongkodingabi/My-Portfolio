@@ -40,24 +40,26 @@ class CertificateController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required',
-            'issued' => 'required',
+            'title' => 'required|string',
+            'description' => 'required|string',
+            'issued' => 'required|string',
             'date' => 'required|date',
-            'file' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+            'file' => 'required|file',
         ]);
 
 
            // Simpan file gambar
-        $path = $request->file('file')->store('public/images');
+        $path = $request->file('file')->store('certificate', 'public');
 
         Certificate::create([
             'title' => $request->input('title'),
+            'description' => $request->input('description'),
             'issued' => $request->input('issued'),
             'date' => $request->input('date'),
             'file' => $path,
         ]);
 
-            return redirect()->route('admin.certificates.certificatesIndex')->with('sucsess', 'Certificate created succsesfully.');
+            return redirect()->route('admin.certificates.certificatesIndex')->with('succsess', 'Certificate created succsesfully.');
 
 
     }
@@ -87,7 +89,7 @@ class CertificateController extends Controller
             'title' => 'required',
             'issued' => 'required',
             'date' => 'required|date',
-            'file' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+            'file' => 'required|file',
         ]);
 
         $certificate = Certificate::findOrFail($id);
@@ -108,7 +110,7 @@ class CertificateController extends Controller
         }
         $certificate->update($data);
 
-        return redirect()->route('admin.certificates.certificatesIndex')->with('sucsess', 'Certificate created succsesfully.');
+        return redirect()->route('admin.certificates.certificatesIndex')->with('succsess', 'Certificate created succsesfully.');
     }
 
     /**
@@ -118,6 +120,6 @@ class CertificateController extends Controller
     {
         $certificate->delete();
 
-        return view('admin.certificates.certificatesIndex');
+        return redirect()->route('admin.certificates.certificatesIndex')->with('succsess', 'Sucsessfully deleted certificate');
     }
 }

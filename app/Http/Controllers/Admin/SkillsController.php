@@ -32,13 +32,13 @@ class SkillsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-        'images' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+        'images' => 'required|image|mimes:jpg,jpeg,png,svg|max:2048',
         'title' => 'required',
         'description' => 'required'
         ]);
 
         //save picture
-        $path = $request->file('images')->store('public/image');
+        $path = $request->file('images')->store('skills', 'public');
 
         Skill::create([
             'images' => $path,
@@ -72,7 +72,7 @@ class SkillsController extends Controller
     {
 
         $request->validate([
-            'images' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+            'images' => 'required|image|mimes:jpg,jpeg,png,svg|max:2048',
             'title' => 'required',
             'description' => 'required'
         ]);

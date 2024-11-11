@@ -340,10 +340,11 @@
                                 <div class="card-body">
                                     <p><strong>Issued By:</strong> {{ $certificate->issued }}</p>
                                     <p><strong>Issue Date:</strong> {{ $certificate->date }}</p>
+                                    <p><strong>Description:</strong> {{ $certificate->description }}</p>
 
                                     @if ($certificate->file)
                                         <p><strong>File:</strong>
-                                            <a href="{{ Storage::url($certificate->file) }}" class="btn btn-outline-primary btn-sm">
+                                            <a href="{{ Storage::url($certificate->file) }}" class="btn btn-outline-primary btn-sm" target="_blank">
                                                 See Certificate
                                             </a>
                                         </p>

@@ -40,13 +40,13 @@ class HeroSectionController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'title' => 'required|string|max:255',
+            'subTitle' => 'required|string|max:255',
             'description' => 'required|string|max:255',
             'picture' => 'required|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
         // Simpan file gambar
-        $path = $request->file('picture')->store('public/images');
+        $path = $request->file('picture')->store('hero', 'public');
 
         HeroSection::create([
             'title' => $request->input('title'),

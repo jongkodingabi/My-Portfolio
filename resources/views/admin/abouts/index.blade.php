@@ -18,7 +18,12 @@
 		});
 	</script>
 
+    {{-- Sweet Alert --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
 	<!-- CSS Files -->
+    <link rel="stylesheet" href="//cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css">
 	<link rel="stylesheet" href="{{ asset('asset-admin/assets/css/bootstrap.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('asset-admin/assets/css/plugins.min.css')}}">
 	<link rel="stylesheet" href="{{ asset('asset-admin/assets/css/kaiadmin.min.css')}}">
@@ -28,25 +33,43 @@
 </head>
 <style>
 
-    .container {
-        max-width: 1000px;
-        padding-bottom: 100px;
-        justify-content: flex;
-        align-items: center;
-    }
 
 
-    .sidebar {
+.sidebar {
         width: 250px; /* Sesuaikan lebar sidebar */
     }
 
-    .navbar {
+.navbar {
     margin-bottom: 0 !important;
 }
 
 h1 {
     margin: 0;
 }
+
+
+
+.table-responsive {
+    margin-top: 20px;
+}
+
+thead.thead-dark th {
+    background-color: #343a40;
+    color: white;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.btn {
+    margin-right: 5px;
+}
+
 
 .certificate-section {
     display: flex;
@@ -349,56 +372,88 @@ h1 {
 
 
 
-        <center>
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-8">
-                        <section class="certificate-section">
-                            <div class="d-flex flex-column">
-                            <h1>About's</h1>
-                            <a href="{{ route('abouts.create') }}" class="btn btn-primary">
-                                Add Abouts</a>
+                        <!-- Tombol untuk Create Skill -->
+                        <div class="container">
+                            <div class="text-center mb-4">
+                                <!-- Menambahkan judul Add Skills -->
+                                <h3 class="mb-3">Add About</h3>
+                                <a href="{{ route('certificates.create') }}" class="btn btn-success">Create About</a>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-hover table-striped" id="myTable">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Title</th>
+                                            <th scope="col">Sub Title</th>
+                                            <th scope="col">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($abouts as $index => $about)
+                                        <tr>
+                                            <td>{{ $index + 1 }}</td>
+                                            <td>{{ $about->title }}</td>
+                                            <td>{{ Str::limit($about->subtitle, 100) }}</td>
+                                            <td>
+                                                <a href="{{ route('admin.abouts.show', $about->id) }}" class="btn btn-info btn-sm">View</a>
+                                                <a href="{{ route('admin.abouts.edit', $about->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                                <form id="delete-form-{{ $about->id }}" action="{{ route('abouts.destroy', $about->id) }}" method="POST" class="d-inline">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete({{ $about->id }})">Delete</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+
+                                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+                                {{-- Sucsess Alert --}}
+                            <script>
+                                @if (session('success'))
+                                Swal.fire({
+                                    position: "center",
+                                    icon: "success",
+                                    title: "{{ session('success') }}",
+                                    text: "successfully save your work",
+                                });
+                                @endif
+                                </script>
+
+                                {{-- Confirm Alert --}}
+                                <script>
+                                    function confirmDelete(aboutId) {
+                                Swal.fire({
+                                    title: "Are you sure?",
+                                    text: "You wont be able to revert this",
+                                    showDenyButton: true,
+                                    showCancelButton: true,
+                                    confirmButtonText: "Delete",
+                                    icon: "warning",
+                                    denyButtonText: `Don't delete`,
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        // Jika user mengonfirmasi penghapusan, submit form secara manual
+                                        document.getElementById("delete-form-" + aboutId).submit();
+                                        Swal.fire({
+                                            title: "Deleted!",
+                                            text:"Your About has been deleted",
+                                            icon: "success"
+                                        })
+                                    } else if (result.isDenied) {
+                                        Swal.fire("About is not deleted", "", "info");
+                                    }
+                                });
+                            }
+                                </script>
+
                             </div>
                         </div>
 
-                        @if(session('success'))
-                            <div class="alert alert-success">
-                                {{ session('success') }}
-                            </div>
-                        @endif
 
-                        <table class="table table-hover table-striped">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th>#</th>
-                                    <th>Title</th>
-                                    <th>Sub Title</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($abouts as $index => $about)
-                                <tr>
-                                    <td>{{ $index + 1 }}</td>
-                                    <td>{{ $about->title }}</td>
-                                    <td>{{ $about->subtitle }}</td>
-                                    <td>
-                                        <a href="{{ route('admin.abouts.show', $about->id) }}" class="btn btn-info btn-sm">View</a>
-                                        <a href="{{ route('admin.abouts.edit', $about->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                        <form action="{{ route('abouts.destroy', $about->id) }}" method="POST" class="d-inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </section>
 
 
 			<footer class="footer">
@@ -529,6 +584,10 @@ h1 {
 	<script src="{{ asset('asset-admin/assets/js/kaiadmin.min.js')}}"></script>
 
 	<!-- Kaiadmin DEMO methods, don't include it in your project! -->
-	<script src="{{ asset('asset-admin/assets/js/setting-demo2.js"></script>
+	<script src="{{ asset('asset-admin/assets/js/setting-demo2.js')}}"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="//cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
+    <script>let table = new DataTable('#myTable');</script>
 </body>
+
 </html>

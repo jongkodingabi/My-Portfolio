@@ -59,7 +59,7 @@ h1 {
     display: flex;
     justify-content: center; /* Pusatkan horizontal */
     align-items: center; /* Pusatkan vertikal */
-    min-height: 80vh; /* Tinggi minimum viewport untuk menjaga form di tengah halaman */
+    min-height: 100vh; /* Tinggi minimum viewport untuk menjaga form di tengah halaman */
     padding: 20px;
     max-width: 100px;
 }
@@ -452,9 +452,9 @@ h1 {
                     Swal.fire({
                         position: "center",
                         icon: "success",
-                        title: "Your work has been saved",
-                        showConfirmButton: false,
-                        timer: 1500
+                        title: "{{ session('success') }}",
+                        text: "successfully save your work",
+                        showConfirmButton: true,
                     });
                     @endif
                     </script>
@@ -466,6 +466,7 @@ h1 {
                         title: "Do you want to delete this project?",
                         showDenyButton: true,
                         showCancelButton: true,
+                        icon: "warning",
                         confirmButtonText: "Delete",
                         denyButtonText: `Don't delete`,
                     }).then((result) => {

@@ -31,7 +31,7 @@
     display: flex;
     justify-content: center; /* Pusatkan horizontal */
     align-items: center; /* Pusatkan vertikal */
-    min-height: 80vh; /* Tinggi minimum viewport untuk menjaga form di tengah halaman */
+    min-height: 100vh; /* Tinggi minimum viewport untuk menjaga form di tengah halaman */
     padding: 20px;
 }
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\About;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -81,7 +82,7 @@ class AboutController extends Controller
 
 
 
-        $data = ([
+        $data = ([ 
             'title' => $request->input('title'),
             'subtitle' => $request->input('subtitle'),
         ]);

@@ -30,7 +30,7 @@
     display: flex;
     justify-content: center; /* Pusatkan horizontal */
     align-items: center; /* Pusatkan vertikal */
-    min-height: 80vh; /* Tinggi minimum viewport untuk menjaga form di tengah halaman */
+    min-height: 100vh; /* Tinggi minimum viewport untuk menjaga form di tengah halaman */
     padding: 20px;
     padding-top: 100px;
 }
@@ -370,23 +370,17 @@ form button:hover {
 
     <h1>Create Certificate</h1>
 
-    @if($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
 
     <form action="{{ route('certificates.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <label>Title:</label>
-        <input type="text" name="title" value="{{ old('title') }}"><br>
+        <input type="text" name="title" value="{{ old('title') }}" placeholder="Certificate name"><br>
+
+        <label>Description:</label>
+        <textarea type="text" name="description" value="{{ old('description') }}" placeholder="Description"></textarea><br>
 
         <label>Issued By:</label>
-        <input type="text" name="issued" value="{{ old('issued') }}"><br>
+        <input type="text" name="issued" value="{{ old('issued') }}" placeholder="Issued By"><br>
 
         <label>Issue Date:</label>
         <input type="date" name="date" value="{{ old('date') }}"><br>
@@ -396,7 +390,7 @@ form button:hover {
 
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-
+</section>
 			<footer class="footer">
 				<div class="container-fluid d-flex justify-content-between">
 					<nav class="pull-left">

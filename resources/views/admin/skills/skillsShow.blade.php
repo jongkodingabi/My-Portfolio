@@ -349,7 +349,7 @@
                                     @endif
                                 </div>
                                 <div class="card-footer">
-                                    <a href="{{ route('admin.certificatesIndex') }}" class="btn btn-secondary">
+                                    <a href="{{ route('admin.skills.skillsIndex') }}" class="btn btn-secondary">
                                         Back
                                     </a>
                                 </div>

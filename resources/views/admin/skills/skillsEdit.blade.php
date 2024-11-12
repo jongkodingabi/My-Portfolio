@@ -1,22 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<title>Avatars - Kaiadmin Bootstrap 5 Admin Dashboard</title>
-	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
-	<link rel="icon" href="{{ asset('asset-admin/assets/img/kaiadmin/favicon.ico')}}" type="image/x-icon"/>
+<x-header-admin></x-header-admin>
 
-	<!-- Fonts and icons -->
-<script src="{{ asset('asset-admin/assets/js/plugin/webfont/webfont.min.js') }}"></script>
-	<script>
-		WebFont.load({
-			google: {"families":["Public Sans:300,400,500,600,700"]},
-			custom: {"families":["Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"], urls: ['../assets/css/fonts.min.css']},
-			active: function() {
-				sessionStorage.fonts = true;
-			}
-		});
-	</script>
 
 	<!-- CSS Files -->
 	<link rel="stylesheet" href="{{ asset('asset-admin/assets/css/bootstrap.min.css') }}">
@@ -170,7 +153,7 @@ form button:hover {
 												</a>
 												<a href="#">
 													<div class="notif-img">
-														<img src="{{ asset('asset-admin/assets/img/mlane.jpg')}}"" alt="Img Profile">
+														<img src="{{ asset('asset-admin/assets/img/mlane.jpg')}}" alt="Img Profile">
 													</div>
 													<div class="notif-content">
 														<span class="subject">Jhon Doe</span>
@@ -388,7 +371,10 @@ form button:hover {
                             <input type="text" name="description" value="{{ old('description', $skill->description) }}"><br>
 
                             <label>File:</label>
-                            <input type="file" name="images"><br><br>
+                            <input type="file" name="images" value="{{ old('file', $skill->images) }}"><br><br>
+
+							<label>Current file:</label>
+							<img src="{{ Storage::url($skill->images) }}" style="width: 100px; height: 100px;" alt=""><br><br>
 
                             <button type="submit" class="btn btn-primary">Update</button>
                         </form>
@@ -524,7 +510,7 @@ form button:hover {
 	<script src="{{ asset('asset-admin/assets/js/kaiadmin.min.js')}}"></script>
 
 	<!-- Kaiadmin DEMO methods, don't include it in your project! -->
-	<script src="{{ asset('asset-admin/assets/js/setting-demo2.js"></script>
+	<script src="{{ asset('asset-admin/assets/js/setting-demo2.js')}}"></script>
 </body>
 </html>
 

@@ -76,7 +76,7 @@
                 <a href="#">
                   <div class="notif-img">
                     <img
-                      src="assets/img/jm_denis.jpg"
+                      src="{{ asset('asset-admin/assets/img/jm_denis.jpg') }}"
                       alt="Img Profile"
                     />
                   </div>
@@ -89,7 +89,7 @@
                 <a href="#">
                   <div class="notif-img">
                     <img
-                      src="assets/img/chadengle.jpg"
+                      src="{{ asset('asset-admin/assets/img/chadengle.jpg') }}"
                       alt="Img Profile"
                     />
                   </div>
@@ -117,7 +117,7 @@
                 <a href="#">
                   <div class="notif-img">
                     <img
-                      src="assets/img/talha.jpg"
+                      src="{{ asset('asset-admin/assets/img/talha.jpg') }}"
                       alt="Img Profile"
                     />
                   </div>
@@ -185,7 +185,7 @@
                 <a href="#">
                   <div class="notif-img">
                     <img
-                      src="assets/img/profile2.jpg"
+                src="{{ asset('asset-admin/assets/img/profile2.jpg') }}"
                       alt="Img Profile"
                     />
                   </div>
@@ -303,7 +303,7 @@
         >
           <div class="avatar-sm">
             <img
-              src="assets/img/profile.jpg"
+              src="{{ asset('asset-admin/assets/img/profile.jpg') }}"
               alt="..."
               class="avatar-img rounded-circle"
             />
@@ -319,7 +319,7 @@
               <div class="user-box">
                 <div class="avatar-lg">
                   <img
-                    src="assets/img/profile.jpg"
+                    src="{{ asset('asset-admin/assets/img/profile.jpg') }}"
                     alt="image profile"
                     class="avatar-img rounded"
                   />

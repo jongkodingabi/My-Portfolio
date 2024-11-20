@@ -20,11 +20,6 @@ class CertificateController extends Controller
         return view('admin.certificates.certificatesIndex', compact('certificates'));
     }
 
-    public function getCertificates(DataTables $dataTables)
-    {
-        $certificates = Certificate::select(['id', 'title', 'issued', 'date', 'file']);
-        return $dataTables->of($certificates)->make(true);
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -49,7 +44,7 @@ class CertificateController extends Controller
 
 
            // Simpan file gambar
-        $path = $request->file('file')->store('certificate', 'public');
+        $path = $request->file('file')->store('certificates', 'public');
 
         Certificate::create([
             'title' => $request->input('title'),
@@ -87,6 +82,7 @@ class CertificateController extends Controller
     {
         $request->validate([
             'title' => 'required',
+            'description' => 'required',
             'issued' => 'required',
             'date' => 'required|date',
             'file' => 'required|file',
@@ -96,6 +92,7 @@ class CertificateController extends Controller
 
         $data = ([
             'title' => $request->input('title'),
+            'description' => $request->input('description'),
             'issued' => $request->input('issued'),
             'date' => $request->input('date'),
         ]);
@@ -106,7 +103,7 @@ class CertificateController extends Controller
             if ($certificate->file) {
                 Storage::delete($certificate->file);
             }
-            $data['file'] = $request->file('file')->store('public/images');
+            $data['file'] = $request->file('file')->store('certificates, public');
         }
         $certificate->update($data);
 

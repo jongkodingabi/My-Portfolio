@@ -9,11 +9,12 @@ use App\Http\Controllers\Admin\HeroSectionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\ContactController;
+use App\Http\Controllers\Admin\FormContactController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/defaultroot', function () {
+    return view('home');
 });
 
 Route::get('/home', function () {
@@ -56,17 +57,17 @@ Route::resource('skills', SkillsController::class)->names([
 ]);
 
 //Route Admin Contact
-Route::resource('contacts', ContactController::class)->names([
-    'index' => 'admin.contact.index',
-    'show' => 'admin.contact.show',
-    'edit' => 'admin.contact.edit'
-]);
+// Route::resource('contacts', ContactController::class)->names([
+//     'index' => 'admin.contact.index',
+//     'show' => 'admin.contact.show',
+//     'edit' => 'admin.contact.edit'
+// ]);
 
 
 //Route Admin About
 
 //ROUTE HOME ABOUT
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::resource('abouts', AboutController::class)->names([
     'index' => 'admin.abouts.index',
@@ -82,6 +83,8 @@ Route::resource('certificates', CertificateController::class)->names([
     'edit' => 'admin.certificates.certificatesEdit',
     'getCertificates' => 'certificates.getCertificates'
 ]);
+
+Route::resource('contact', FormContactController::class);
 
 
 require __DIR__.'/auth.php';

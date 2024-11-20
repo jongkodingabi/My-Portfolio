@@ -1,32 +1,34 @@
-import defaultTheme from 'tailwindcss/defaultTheme';
-import forms from '@tailwindcss/forms';
+import defaultTheme from "tailwindcss/defaultTheme";
+import forms from "@tailwindcss/forms";
 
 /** @type {import('tailwindcss').Config} */
 export default {
     content: [
-        './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
-        './storage/framework/views/*.php',
-        './resources/views/**/*.blade.php',
+        "./vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php",
+        "./storage/framework/views/*.php",
+        "./resources/views/**/*.blade.php",
+        "./resources/views/home.blade.php", // lokasi file blade halaman home
     ],
 
-    darkMode: 'class',
+    darkMode: "class",
 
     theme: {
         container: {
             center: true,
-            padding: '16px'
-          },
+            padding: "16px",
+        },
         extend: {
             colors: {
-                primary: '#06b6d4',
-                secondary: '#64748b',
-                dark: '#0f172a',
-              },
-              screens: {
-                '2xl': '1320px',
-              },
+                primary: "#42b883",
+                secondary: "#64748b",
+                dark: "#0f172a",
+                vueDarkGreen: "#35495e",
+            },
+            screens: {
+                "2xl": "1320px",
+            },
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                sans: ["Figtree", ...defaultTheme.fontFamily.sans],
             },
         },
     },

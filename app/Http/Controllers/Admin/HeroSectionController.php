@@ -46,7 +46,7 @@ class HeroSectionController extends Controller
         ]);
 
         // Simpan file gambar
-        $path = $request->file('picture')->store('hero', 'public');
+        $path = $request->file('picture')->store('heroes', 'public');
 
         HeroSection::create([
             'title' => $request->input('title'),

@@ -36,15 +36,19 @@ class ProjectController extends Controller
             'picture'=> 'required|image|mimes:jpg,jpeg,png|max:2048',
             'title' => 'required',
             'description' => 'required',
+            'link' => 'required',
+            'date' => 'required',
         ]);
 
         //Save picture
-        $path = $request->file('picture')->store('public/images');
+        $path = $request->file('picture')->store('projects', 'public');
 
         Project::create([
             'picture' => $path,
             'title' => $request->input('title'),
-            'description' => $request->input('description')
+            'description' => $request->input('description'),
+            'link' => $request->input('link'),
+            'date' => $request->input('date'),
         ]);
         return redirect()->route('admin.projects.projectIndex')->with('success', 'Succsess added project.');
     }
@@ -74,10 +78,12 @@ class ProjectController extends Controller
             'picture'=> 'required|image|mimes:jpg,jpeg,png|max:2048',
             'title' => 'required',
             'description' => 'required',
+            'link' => 'required',
+            'date' => 'required',
         ]);
 
 
-        $path = $request->file('picture')->store('project', 'public');
+        $path = $request->file('picture')->store('projects', 'public');
 
        $data = ([
         'picture' => $path,
@@ -89,7 +95,7 @@ class ProjectController extends Controller
         if ($project->picture){
             Storage::delete($project->picture);
         }
-        $data['picture'] = $request->file('picture')->store('public/images');
+        $data['picture'] = $request->file('picture')->store('projects', 'public');
        }
        $project->update($data);
 

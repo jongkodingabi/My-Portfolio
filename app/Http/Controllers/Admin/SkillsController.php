@@ -18,6 +18,11 @@ class SkillsController extends Controller
         return view('admin.skills.skillsIndex',  compact('skills'));
     }
 
+    public function home(){
+        $skills = Skill::all();
+        return view('/home', compact('skills'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */

@@ -6,7 +6,7 @@
     <nav
       class="navbar navbar-header-left navbar-expand-lg navbar-form nav-search p-0 d-none d-lg-flex"
     >
-      <div class="input-group">
+      {{-- <div class="input-group">
         <div class="input-group-prepend">
           <button type="submit" class="btn btn-search pe-1">
             <i class="fa fa-search search-icon"></i>
@@ -17,8 +17,10 @@
           placeholder="Search ..."
           class="form-control"
         />
-      </div>
+      </div> --}}
     </nav>
+
+    <marquee behavior="scroll" direction="right">Welcome back, {{ auth()->user()->name }}</marquee>
 
     <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
       <li
@@ -310,7 +312,8 @@
           </div>
           <span class="profile-username">
             <span class="op-7">Hi,</span>
-            <span class="fw-bold">Hizrian</span>
+            <span class="fw-bold">{{ auth()->user()->name }}
+            </span>
           </span>
         </a>
         <ul class="dropdown-menu dropdown-user animated fadeIn">
@@ -344,13 +347,30 @@
               <a class="dropdown-item" href="#">Account Setting</a>
               <div class="dropdown-divider"></div>
               <!-- Authentication -->
-              <form method="POST" action="{{ route('logout') }}">
+              <form method="POST" action="{{ route('logout') }}" id="logout-form">
                   @csrf
                   <a class="dropdown-item" href="#"
-                  onclick="event.preventDefault(); this.closest('form').submit();">
+                  onclick="event.preventDefault(); confirmLogout();">
                       Logout
                   </a>
               </form>
+                  <script>
+                    function confirmLogout(){
+                      Swal.fire({
+                        title: 'Are you sure?',
+                        text: 'You will out from this admin',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes, king',
+                      }).then((result) => {
+                        if (result.isConfirmed) {
+                          document.getElementById('logout-form').submit();
+                        }
+                      });
+                    }
+                  </script>
             </li>
           </div>
         </ul>

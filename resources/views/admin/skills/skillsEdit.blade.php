@@ -371,7 +371,7 @@ form button:hover {
                             <input type="text" name="description" value="{{ old('description', $skill->description) }}"><br>
 
                             <label>File:</label>
-                            <input type="file" name="images" value="{{ old('file', $skill->images) }}"><br><br>
+                            <input type="file" name="images" value="{{ old('images', $skill->images) }}"><br><br>
 
 							<label>Current file:</label>
 							<img src="{{ Storage::url($skill->images) }}" style="width: 100px; height: 100px;" alt=""><br><br>

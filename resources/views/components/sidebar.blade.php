@@ -105,7 +105,7 @@
             <div class="collapse" id="forms">
               <ul class="nav nav-collapse">
                 <li>
-                  <a href="{{ route('admin.contact.index') }}">
+                  <a href="{{ route('contact.index') }}">
                     <span class="sub-item">Index</span>
                   </a>
                 </li>
@@ -152,26 +152,6 @@
                   <a href="{{ route('skills.create') }}">
                     <span class="sub-item">Add skills</span>
                   </a>
-                </li>
-              </ul>
-            </div>
-          </li>
-
-          <li class="nav-item">
-            <a data-bs-toggle="collapse" href="#logout">
-              <i class="far fa-chart-bar"></i>
-              <p>Logout</p>
-              <span class="caret"></span>
-            </a>
-            <div class="collapse" id="logout">
-              <ul class="nav nav-collapse">
-                <li>
-                  <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <a href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit()" class="text-base text-dark py-2 mx-8 flex group-hover:text-primary dark:text-white">
-                      Logout
-                    </a>
-                  </form>
                 </li>
               </ul>
             </div>

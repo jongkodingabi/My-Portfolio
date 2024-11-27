@@ -54,7 +54,7 @@ class CertificateController extends Controller
             'file' => $path,
         ]);
 
-            return redirect()->route('admin.certificates.certificatesIndex')->with('succsess', 'Certificate created succsesfully.');
+            return redirect()->route('admin.certificates.certificatesIndex')->with('success', 'Certificate created succsesfully.');
 
 
     }
@@ -85,7 +85,7 @@ class CertificateController extends Controller
             'description' => 'required',
             'issued' => 'required',
             'date' => 'required|date',
-            'file' => 'required|file',
+            'file' => 'nullable|file',
         ]);
 
         $certificate = Certificate::findOrFail($id);
@@ -103,11 +103,11 @@ class CertificateController extends Controller
             if ($certificate->file) {
                 Storage::delete($certificate->file);
             }
-            $data['file'] = $request->file('file')->store('certificates, public');
+            $data['file'] = $request->file('file')->store('certificates', 'public');
         }
         $certificate->update($data);
 
-        return redirect()->route('admin.certificates.certificatesIndex')->with('succsess', 'Certificate created succsesfully.');
+        return redirect()->route('admin.certificates.certificatesIndex')->with('success', 'Certificate updated succsesfully.');
     }
 
     /**

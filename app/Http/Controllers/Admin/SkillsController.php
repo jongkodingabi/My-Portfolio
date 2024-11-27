@@ -39,7 +39,7 @@ class SkillsController extends Controller
         $request->validate([
         'images' => 'required|image|mimes:jpg,jpeg,png,svg|max:2048',
         'title' => 'required',
-        'description' => 'required'
+        'link' => 'nullable',
         ]);
 
         //save picture
@@ -48,7 +48,7 @@ class SkillsController extends Controller
         Skill::create([
             'images' => $path,
             'title' => $request->input('title'),
-            'description' => $request->input('description'),
+            'link' => $request->input('link'),
         ]);
 
         return redirect()->route('admin.skills.skillsIndex')->with('success', 'sucsesfully added skills');
@@ -77,9 +77,9 @@ class SkillsController extends Controller
     {
 
         $request->validate([
-            'images' => 'required|image|mimes:jpg,jpeg,png,svg|max:2048',
+            'images' => 'nullable|image|mimes:jpg,jpeg,png,svg|max:2048',
             'title' => 'required',
-            'description' => 'required'
+            'link' => 'nullable',
         ]);
 
         $skill = Skill::findOrFail($id);
@@ -87,6 +87,7 @@ class SkillsController extends Controller
         $data = ([
             'title' => $request->input('title'),
             'description' => $request->input('description'),
+            'link' => $request->input('link'),
         ]);
         //update gambar jika ada
         if ($request->hasFile('images')){
@@ -94,8 +95,10 @@ class SkillsController extends Controller
             if ($skill->images){
                 Storage::delete($skill->images);
             }
-            $data['images'] = $request->file('images')->store('public/images');
+            $data['images'] = $request->file('images')->store('skills', 'public');
         }
+        $skill->update($data);
+        
         return redirect()->route('admin.skills.skillsIndex')->with('success', 'updating skill');
     }
 

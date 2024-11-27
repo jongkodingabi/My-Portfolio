@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Skill extends Model
+class SosmedIcon extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'images',
-        'title',
+        'name',
+        'icon',
         'link',
     ];
 }

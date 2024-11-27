@@ -112,7 +112,7 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Title</th>
-                                <th scope="col">Description</th>
+                                <th scope="col">Link</th>
                                 <th scope="col">Actions</th>
                             </tr>
                         </thead>
@@ -121,7 +121,7 @@
                                 <tr>
                                     <td>{{ $index + 1 }}</td>
                                     <td>{{ $skill->title }}</td>
-                                    <td>{{ $skill->description }}</td>
+                                    <td>{{ Str::limit($skill->link, 50) }}</td>
                                     <td>
                                         <a href="{{ route('admin.skills.skillsShow', $skill->id) }}"
                                             class="btn btn-info btn-sm">View</a>

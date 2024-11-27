@@ -89,7 +89,7 @@ class AboutController extends Controller
 
         $about->update($data);
 
-        return redirect()->route('admin.abouts.index')->with('succsess, succsesfully updating About');
+        return redirect()->route('admin.abouts.index')->with('success', 'succsesfully updating About');
     }
 
     /**

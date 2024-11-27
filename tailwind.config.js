@@ -21,8 +21,8 @@ export default {
             colors: {
                 primary: "#42b883",
                 secondary: "#64748b",
-                dark: "#0f172a",
-                vueDarkGreen: "#35495e",
+                dark: "#020617",
+                youngGreen: "#34d399",
             },
             screens: {
                 "2xl": "1320px",

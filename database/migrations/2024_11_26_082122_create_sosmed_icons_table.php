@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('skills', function (Blueprint $table) {
+        Schema::create('sosmed_icons', function (Blueprint $table) {
             $table->id();
-            $table->string('images');
-            $table->string('title');
-            $table->string('description');
+            $table->string('name');
+            $table->string('icon');
+            $table->string('link');
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('skills');
+        Schema::dropIfExists('sosmed_icons');
     }
 };

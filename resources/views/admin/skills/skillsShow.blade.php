@@ -321,7 +321,7 @@
                                     <h2 class="mb-0">{{ $skill->title }}</h2>
                                 </div>
                                 <div class="card-body">
-                                    <p><strong>Description:</strong> {{ $skill->description }}</p>
+                                    <p><strong>Link:</strong> {{ $skill->link }}</p>
 
                                     @if ($skill->images)
                                         <p><strong>File:</strong>

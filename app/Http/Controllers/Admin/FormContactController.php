@@ -73,10 +73,10 @@ class FormContactController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(FormContact $input)
+    public function destroy(FormContact $contact)
     {
-        $input->delete();
+        $contact->delete();
 
-        return view('admin.contact.index');
+        return redirect()->route('contact.index')->with('success', 'Sucsessfully deleted messages');
     }
 }

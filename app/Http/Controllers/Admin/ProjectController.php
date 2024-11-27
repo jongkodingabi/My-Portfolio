@@ -75,20 +75,19 @@ class ProjectController extends Controller
     public function update(Request $request, Project $project)
     {
         $request->validate([
-            'picture'=> 'required|image|mimes:jpg,jpeg,png|max:2048',
-            'title' => 'required',
-            'description' => 'required',
-            'link' => 'required',
-            'date' => 'required',
+            'picture'=> 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'title' => 'nullable',
+            'description' => 'nullable',
+            'link' => 'nullable',
+            'date' => 'nullable',
         ]);
 
 
-        $path = $request->file('picture')->store('projects', 'public');
 
        $data = ([
-        'picture' => $path,
         'title' => $request->input('title'),
-        'description' => $request->input('description')
+        'description' => $request->input('description'),
+        'link' => $request->input('link'),
        ]);
 
        if ($request->hasFile('picture')){

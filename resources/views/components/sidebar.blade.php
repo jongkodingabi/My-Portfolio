@@ -54,7 +54,7 @@
                     <div class="collapse" id="base">
                         <ul class="nav nav-collapse">
                             <li>
-                                <a href="{{ route('admin.heroes.heroIndex') }}">
+                                <a href="{{ route('heroes.index') }}">
                                     <span class="sub-item">Hero</span>
                                 </a>
                             </li>
@@ -71,7 +71,7 @@
                     <div class="collapse" id="sidebarLayouts">
                         <ul class="nav nav-collapse">
                             <li>
-                                <a href="{{ route('admin.abouts.index') }}">
+                                <a href="{{ route('abouts.index') }}">
                                     <span class="sub-item">About</span>
                                 </a>
                             </li>

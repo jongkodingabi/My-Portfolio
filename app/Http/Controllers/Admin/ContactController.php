@@ -18,6 +18,7 @@ class ContactController extends Controller
         return view('admin.contact.index', compact('contacts'));
     }
 
+
     /**
      * Show the form for creating a new resource.
      */

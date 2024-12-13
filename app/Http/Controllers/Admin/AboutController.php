@@ -51,7 +51,7 @@ class AboutController extends Controller
         'subtitle' => $request->input('subtitle'),
     ]);
 
-        return redirect()->route('admin.abouts.index')->with('success', 'Succsesfully added About');
+        return redirect()->route('abouts.index')->with('success', 'Succsesfully added About');
     }
 
     /**
@@ -89,7 +89,7 @@ class AboutController extends Controller
 
         $about->update($data);
 
-        return redirect()->route('admin.abouts.index')->with('success', 'succsesfully updating About');
+        return redirect()->route('abouts.index')->with('success', 'succsesfully updating About');
     }
 
     /**
@@ -99,6 +99,6 @@ class AboutController extends Controller
     {
         $about->delete();
 
-        return view('admin.abouts.index');
+        return redirect()->route('abouts.index')->with('success', 'succsesfully deleting About');
     }
 }

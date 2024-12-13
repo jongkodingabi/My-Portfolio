@@ -87,7 +87,8 @@
     </header>
 
     <!-- Hero Section Start -->
-    <section id="home" class="pt-36 lg:pt-[25px] dark:bg-dark">
+    <section id="home"
+        class="pt-36 lg:pt-[25px] bg-gradient-to-r from-white to-primary dark:from-dark dark:to-primary bg-cover">
         <div class="container">
             <div class="flex flex-wrap">
                 <div class="w-full self-center px-4 lg:w-1/2">
@@ -115,7 +116,7 @@
                 </div>
                 <div class="w-full self-end px-4 lg:w-1/2 md:scale-120 overflow-hidden">
                     <div class="relative mt-10 lg:mt-9 lg:right-0">
-                        <img src="{{ Storage::url($heroSection->picture) }}" width="300" height="300"
+                        <img src="{{ Storage::url($heroSection->picture) }}" width="450" height="450"
                             alt="Abisam Hazim" class="relative z-10 max-w-full mx-auto" />
                         @endforeach
                         <span class="absolute bottom-0  left-1/2 -translate-x-1/2">
@@ -214,7 +215,7 @@
     <!-- About Section End -->
 
     <!-- Project section start -->
-    <section id="portofolio" class="pt-36 pb-16 bg-slate-100 dark:bg-slate-900">
+    <section id="portofolio" class="pt-36 pb-16 bg-slate-100 dark:bg-dark">
         <div class="container">
             <div class="w-full px-4">
                 <div class="max-w-xl mx-auto text-center mb-16">
@@ -562,9 +563,9 @@
             </div>
             <p class="font-medium text-xs text-slate-500 text-center">Made with 💖, by <a href="https://instagram.com"
                     target="_blank
-        " class="font-bold text-primary">
+        " class="font-bold text-slate-900">
                     Abisam Hazim</a>, with using <a href="https://tailwindcss.com" target="_blank"
-                    class="font-bold text-sky-500">Tailwind CSS</a></p>
+                    class="font-bold text-sky-700">Tailwind CSS</a></p>
         </div>
     </footer>
     <!-- footer end -->

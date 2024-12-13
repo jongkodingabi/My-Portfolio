@@ -55,7 +55,7 @@ class HeroSectionController extends Controller
             'picture' => $path,
         ]);
 
-        return redirect()->route('admin.heroes.heroIndex')
+        return redirect()->route('heroes.index')
                          ->with('success', 'Hero Section berhasil ditambahkan');
     }
 
@@ -64,24 +64,23 @@ class HeroSectionController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(HeroSection $heroSection)
+    public function show(HeroSection $hero)
     {
-            return view('admin.heroes.heroShow', compact('heroSection'));
+            return view('admin.heroes.heroShow', compact('hero'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(HeroSection $heroSection)
+    public function edit(HeroSection $hero)
     {
-        $heroSection = HeroSection::findOrFail($heroSection);
-        return view('admin.heroes.heroEdit', compact('heroSection'));
+        return view('admin.heroes.heroEdit', compact('hero'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, HeroSection $heroSection)
+    public function update(Request $request, HeroSection $hero)
     {
         $request->validate([
             'title' => 'required|string|max:255',
@@ -90,26 +89,26 @@ class HeroSectionController extends Controller
             'picture' => 'sometimes|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        $heroSection = HeroSection::findOrFail($heroSection);
-
         $data = [
             'title' => $request->input('title'),
+            'subTitle' => $request->input('subTitle'),
+            'description' => $request->input('description'),
         ];
 
         // Update gambar jika ada
         if ($request->hasFile('picture')) {
             // Hapus gambar lama
-            if ($heroSection->picture) {
-                Storage::delete($heroSection->picture);
+            if ($hero->picture) {
+                Storage::delete($hero->picture);
             }
 
             // Simpan gambar baru
-            $data['picture'] = $request->file('picture')->store('public/images');
+            $data['picture'] = $request->file('picture')->store('hero', 'public');
         }
 
-        $heroSection->update($data);
+        $hero->update($data);
 
-        return redirect()->route('hero.index')
+        return redirect()->route('heroes.index')
                          ->with('success', 'Hero Section berhasil diperbarui');
     }
 
@@ -118,16 +117,16 @@ class HeroSectionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(HeroSection $heroSection)
+    public function destroy(HeroSection $hero)
     {
         // Hapus gambar
-        if ($heroSection->picture) {
-            Storage::delete($heroSection->picture);
+        if ($hero->picture) {
+            Storage::delete($hero->picture);
         }
 
-        $heroSection->delete();
+        $hero->delete();
 
-        return redirect()->route('admin.heroes.heroIndex')
+        return redirect()->route('heroes.index')
                          ->with('success', 'Hero Section berhasil dihapus');
     }
 }

@@ -1,16 +1,19 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\SkillsController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Admin\CertificateController;
+use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\HeroSectionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\ProjectController;
-use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\FormContactController;
 use App\Http\Controllers\UserController;
+use App\Models\FormContact;
+use App\Models\Skill;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/defaultroot', function () {
@@ -30,16 +33,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->middleware('auth', 'admin');
     Route::get('/home', [UserController::class, 'index'])->middleware('auth', 'user')->name('home');
 
+    // Pengiriman jumlah data ke dashboard
+    Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 
 
 //ROUTE HERO HOME
 
 //ROUTE Admin Hero
-Route::resource('heroSectionsCollections', HeroSectionController::class)->names([
-    'index' => 'admin.heroes.heroIndex',
-    'edit' => 'admin.heroes.heroEdit',
-    'show' => 'admin.heroes.heroShow',
-]);
+Route::resource('/admin/heroes', HeroSectionController::class);
 
 //ROUTE Admin Project
 Route::resource('projects', ProjectController::class)->names([
@@ -69,11 +70,7 @@ Route::resource('skills', SkillsController::class)->names([
 //ROUTE HOME ABOUT
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::resource('abouts', AboutController::class)->names([
-    'index' => 'admin.abouts.index',
-    'show' => 'admin.abouts.show',
-    'edit' => 'admin.abouts.edit',
-]);
+Route::resource('/admin/abouts', AboutController::class);
 
 
 //Route Admin Certificate

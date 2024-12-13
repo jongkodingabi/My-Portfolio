@@ -18,6 +18,13 @@ class FormContactController extends Controller
         return view('admin.contact.index', compact('input'));
     }
 
+    
+    public function countContacts() {
+        $totalContact = FormContact::count();
+
+        return view('admin.dashboard', compact('totalContact'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */

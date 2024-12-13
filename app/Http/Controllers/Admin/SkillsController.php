@@ -23,6 +23,11 @@ class SkillsController extends Controller
         return view('/home', compact('skills'));
     }
 
+    public function countSkills() {
+        $skills = SKill::count();
+    
+        return view('admin.dashboard', compact('skills'));
+    }
     /**
      * Show the form for creating a new resource.
      */

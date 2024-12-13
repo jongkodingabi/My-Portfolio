@@ -117,6 +117,6 @@ class CertificateController extends Controller
     {
         $certificate->delete();
 
-        return redirect()->route('admin.certificates.certificatesIndex')->with('succsess', 'Sucsessfully deleted certificate');
+        return redirect()->route('admin.certificates.certificatesIndex')->with('success', 'Sucsessfully deleted certificate');
     }
 }

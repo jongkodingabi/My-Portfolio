@@ -98,7 +98,7 @@ class ProjectController extends Controller
        }
        $project->update($data);
 
-        return redirect()->route('admin.projects.projectIndex')->with('success', 'succsesfully added project');
+        return redirect()->route('admin.projects.projectIndex')->with('success', 'succsesfully updated project');
     }
 
     /**

@@ -66,14 +66,14 @@
                             <section class="show-section">
                                 <div class="card shadow-sm">
                                     <div class="card-header bg-primary text-white">
-                                        <h2 class="mb-0">{{ $heroSection->title }}</h2>
+                                        <h2 class="mb-0">{{ $hero->title }}</h2>
                                     </div>
                                     <div class="card-body">
-                                        <p><strong>Sub Title:</strong> {{ $heroSection->subTitle }}</p>
-                                        <p><strong>Description:</strong> {{ $heroSection->description }}</p>
-                                        @if ($heroSection->picture)
+                                        <p><strong>Sub Title:</strong> {{ $hero->subTitle }}</p>
+                                        <p><strong>Description:</strong> {{ $hero->description }}</p>
+                                        @if ($hero->picture)
                                             <p><strong>File:</strong>
-                                                <a href="{{ Storage::url($heroSection->picture) }}"
+                                                <a href="{{ Storage::url($hero->picture) }}"
                                                     class="btn btn-outline-primary btn-sm">
                                                     See Picture
                                                 </a>
@@ -81,7 +81,7 @@
                                         @endif
                                     </div>
                                     <div class="card-footer">
-                                        <a href="{{ route('admin.heroes.heroIndex') }}" class="btn btn-secondary">
+                                        <a href="{{ route('heroes.index') }}" class="btn btn-secondary">
                                             Back
                                         </a>
                                     </div>

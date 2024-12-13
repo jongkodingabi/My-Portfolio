@@ -115,6 +115,7 @@ form button:hover {
          <input type="text" name="subtitle" value="{{ old('subtitle') }}"><br>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+</section>
 
 			<footer class="footer">
 				<div class="container-fluid d-flex justify-content-between">

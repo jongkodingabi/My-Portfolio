@@ -104,7 +104,7 @@
             <div class="text-center mb-4">
                 <!-- Menambahkan judul Add Skills -->
                 <h3 class="mb-3">Add Heroes</h3>
-                <a href="{{ route('heroSectionsCollections.create') }}" class="btn btn-success">Create Hero</a>
+                <a href="{{ route('heroes.create') }}" class="btn btn-success">Create Hero</a>
             </div>
             <div class="table-responsive">
                 <table class="table table-hover table-striped" id="myTable">
@@ -118,24 +118,24 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($heroSectionsCollection as $index => $heroSection)
+                        @foreach ($heroSectionsCollection as $index => $hero)
                             <tr>
                                 <td>{{ $index + 1 }}</td>
-                                <td>{{ $heroSection->title }}</td>
-                                <td>{{ $heroSection->subTitle }}</td>
-                                <td>{{ Str::limit($heroSection->description, 50) }}</td>
+                                <td>{{ $hero->title }}</td>
+                                <td>{{ $hero->subTitle }}</td>
+                                <td>{{ Str::limit($hero->description, 50) }}</td>
                                 <td>
-                                    <a href="{{ route('admin.heroes.heroShow', $heroSection->id) }}"
+                                    <a href="{{ route('heroes.show', $hero->id) }}"
                                         class="btn btn-info btn-sm">View</a>
-                                    <a href="{{ route('admin.heroes.heroEdit', $heroSection->id) }}"
+                                    <a href="{{ route('heroes.edit', $hero->id) }}"
                                         class="btn btn-warning btn-sm">Edit</a>
-                                    <form id="delete-form-{{ $heroSection->id }}"
-                                        action="{{ route('heroSectionsCollections.destroy', $heroSection->id) }}"
-                                        method="POST" class="d-inline">
+                                    <form id="delete-form-{{ $hero->id }}"
+                                        action="{{ route('heroes.destroy', $hero->id) }}" method="POST"
+                                        class="d-inline">
                                         @csrf
                                         @method('DELETE')
                                         <button type="button" class="btn btn-danger btn-sm"
-                                            onclick="confirmDelete({{ $heroSection->id }})">Delete</button>
+                                            onclick="confirmDelete({{ $hero->id }})">Delete</button>
                                     </form>
                                 </td>
                             </tr>

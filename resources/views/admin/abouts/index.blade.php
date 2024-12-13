@@ -123,9 +123,9 @@
                                 <td>{{ $about->title }}</td>
                                 <td>{{ Str::limit($about->subtitle, 100) }}</td>
                                 <td>
-                                    <a href="{{ route('admin.abouts.show', $about->id) }}"
+                                    <a href="{{ route('abouts.show', $about->id) }}"
                                         class="btn btn-info btn-sm">View</a>
-                                    <a href="{{ route('admin.abouts.edit', $about->id) }}"
+                                    <a href="{{ route('abouts.edit', $about->id) }}"
                                         class="btn btn-warning btn-sm">Edit</a>
                                     <form id="delete-form-{{ $about->id }}"
                                         action="{{ route('abouts.destroy', $about->id) }}" method="POST"

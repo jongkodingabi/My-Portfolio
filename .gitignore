@@ -1,6 +1,5 @@
 /.phpunit.cache
 /node_modules
-/storage/*.key
 /vendor
 Homestead.json
 Homestead.yaml
